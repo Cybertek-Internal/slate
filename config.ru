@@ -1,29 +1,14 @@
 
-require "rubygems"
+require 'middleman-core/load_paths'
+::Middleman.setup_load_paths
 
-require "rack"
-require "middleman/rack"
-require "rack/contrib/try_static"
+require 'middleman-core'
+require 'middleman-core/rack'
 
-# Build the static site when the app boots
-`bundle exec middleman build`
+require 'fileutils'
+FileUtils.mkdir('log') unless File.exist?('log')
+::Middleman::Logger.singleton("log/#{ENV['RACK_ENV']}.log")
 
-# Enable proper HEAD responses
-use Rack::Head
-# Attempt to serve static HTML files
-use Rack::TryStatic,
-    :root => "tmp",
-    :urls => %w[/],
-    :try => ['.html', 'index.html', '/index.html']
+app = ::Middleman::Application.new
 
-# Serve a 404 page if all else fails
-run lambda { |env|
-  [
-    404,
-    {
-      "Content-Type"  => "text/html",
-      "Cache-Control" => "public, max-age=60"
-    },
-    File.open("tmp/404/index.html", File::RDONLY)
-  ]
-}
+run ::Middleman::Rack.new(app).to_app
