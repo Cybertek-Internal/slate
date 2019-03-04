@@ -1,5 +1,7 @@
 bookit api reference
 ------------
+[app repo](https://github.com/CybertekSchool/cybertek-reservation-api)
+
 getting started
 ------------------------------
 
@@ -39,4 +41,4 @@ For those who don't have JavaScript runtime or are experiencing JavaScript runti
 
 special thanks
 --------------------
-- [original repo]((https://github.com/lord/slate)
+- [original repo](https://github.com/lord/slate)
