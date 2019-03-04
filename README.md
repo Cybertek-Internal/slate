@@ -1,11 +1,12 @@
-bookit api reference
+# bookit api reference
 ------------
-[app repo](https://github.com/CybertekSchool/cybertek-reservation-api)
+Putting some light in the
+[bookit backend](https://github.com/CybertekSchool/cybertek-reservation-api) application.
 
-getting started
+## getting started
 ------------------------------
 
-### Prerequisites
+### prerequisites
 
 You're going to need:
 
@@ -13,7 +14,7 @@ You're going to need:
  - **Ruby, version 2.3.1 or newer**
  - **Bundler** — If Ruby is already installed, but the `bundle` command doesn't work, just run `gem install bundler` in a terminal.
 
-### Getting Set Up
+### getting set up
 
 1. Fork this repository on GitHub.
 2. Clone *your forked repository* (not our original one) to your hard drive with `git clone https://github.com/YOURUSERNAME/slate.git`
@@ -35,10 +36,10 @@ Now that Slate is all set up on your machine, you'll probably want to learn more
 
 If you'd prefer to use Docker, instructions are available [in the wiki](https://github.com/lord/slate/wiki/Docker).
 
-### Note on JavaScript Runtime
+### note on javascript runtime
 
 For those who don't have JavaScript runtime or are experiencing JavaScript runtime issues with ExecJS, it is recommended to add the [rubyracer gem](https://github.com/cowboyd/therubyracer) to your gemfile and run `bundle` again.
 
-special thanks
+## special thanks
 --------------------
-- [original repo](https://github.com/lord/slate)
+- [origin](https://github.com/lord/slate)
