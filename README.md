@@ -1,10 +1,9 @@
 # bookit api reference
-------------
+
 Putting some light in the
 [bookit backend](https://github.com/CybertekSchool/cybertek-reservation-api) application.
 
 ## getting started
-------------------------------
 
 ### prerequisites
 
@@ -41,5 +40,4 @@ If you'd prefer to use Docker, instructions are available [in the wiki](https://
 For those who don't have JavaScript runtime or are experiencing JavaScript runtime issues with ExecJS, it is recommended to add the [rubyracer gem](https://github.com/cowboyd/therubyracer) to your gemfile and run `bundle` again.
 
 ## special thanks
---------------------
-- [origin](https://github.com/lord/slate)
+[origin](https://github.com/lord/slate)
