@@ -92,30 +92,28 @@ This endpoint retrieves all campuses with enclosed cluster and room information.
 ## Get a Campus by location
 
 ```json
-[
-    {
-        "id": integer,
-        "location": "string",
-        "clusters": [
-            {
-                "id": integer,
-                "name": "string",
-                "rooms": [
-                    {
-                        "id": integer,
-                        "name": "string",
-                        "description": "string",
-                        "capacity": integer,
-                        "withTV": boolean,
-                        "withWhiteBoard": boolean
-                    },
-                    ...
-                ]
-            },
-            ...
-        ]
-    }
-]
+{
+    "id": integer,
+    "location": "string",
+    "clusters": [
+        {
+            "id": integer,
+            "name": "string",
+            "rooms": [
+                {
+                    "id": integer,
+                    "name": "string",
+                    "description": "string",
+                    "capacity": integer,
+                    "withTV": boolean,
+                    "withWhiteBoard": boolean
+                },
+                ...
+            ]
+        },
+        ...
+    ]
+}
 ```
 
 This endpoint retrieves a campus by location.
@@ -124,7 +122,7 @@ This endpoint retrieves a campus by location.
 
 `GET /api/campuses/{campus_location}`
 
-### URL Parameters
+### Path Parameters
 
 Parameter | Pattern |Description
 --------- | ------- |-----------
@@ -135,30 +133,28 @@ Campus location is a state acronym in which campus is located (`VA`, `IL`).
 ## Get your Campus
 
 ```json
-[
-    {
-        "id": integer,
-        "location": "string",
-        "clusters": [
-            {
-                "id": integer,
-                "name": "string",
-                "rooms": [
-                    {
-                        "id": integer,
-                        "name": "string",
-                        "description": "string",
-                        "capacity": integer,
-                        "withTV": boolean,
-                        "withWhiteBoard": boolean
-                    },
-                    ...
-                ]
-            },
-            ...
-        ]
-    }
-]
+{
+    "id": integer,
+    "location": "string",
+    "clusters": [
+        {
+            "id": integer,
+            "name": "string",
+            "rooms": [
+                {
+                    "id": integer,
+                    "name": "string",
+                    "description": "string",
+                    "capacity": integer,
+                    "withTV": boolean,
+                    "withWhiteBoard": boolean
+                },
+                ...
+            ]
+        },
+        ...
+    ]
+}
 ```
 
 This endpoint retrieves your campus.
@@ -204,23 +200,21 @@ This endpoint retrieves all clusters with enclosed room information.
 ## Get a Cluster by name
 
 ```json
-[
-    {
-        "id": integer,
-        "name": "string",
-        "rooms": [
-            {
-                "id": integer,
-                "name": "string",
-                "description": "string",
-                "capacity": integer,
-                "withTV": boolean,
-                "withWhiteBoard": boolean
-            },
-            ...
-        ]
-    }
-]
+{
+    "id": integer,
+    "name": "string",
+    "rooms": [
+        {
+            "id": integer,
+            "name": "string",
+            "description": "string",
+            "capacity": integer,
+            "withTV": boolean,
+            "withWhiteBoard": boolean
+        },
+        ...
+    ]
+}
 ```
 
 This endpoint retrieves a campus by name.
@@ -229,7 +223,7 @@ This endpoint retrieves a campus by name.
 
 `GET /api/clusters/{cluster_name}`
 
-### URL Parameters
+### Path Parameters
 
 Parameter | Description
 --------- | ----------
@@ -238,23 +232,21 @@ cluster_name | the name of a cluster
 ## Get your Cluster
 
 ```json
-[
-    {
-        "id": integer,
-        "name": "string",
-        "rooms": [
-            {
-                "id": integer,
-                "name": "string",
-                "description": "string",
-                "capacity": integer,
-                "withTV": boolean,
-                "withWhiteBoard": boolean
-            },
-            ...
-        ]
-    }
-]
+{
+    "id": integer,
+    "name": "string",
+    "rooms": [
+        {
+            "id": integer,
+            "name": "string",
+            "description": "string",
+            "capacity": integer,
+            "withTV": boolean,
+            "withWhiteBoard": boolean
+        },
+        ...
+    ]
+}
 ```
 
 This endpoint retrieves your campus.
@@ -291,16 +283,14 @@ This endpoint retrieves all rooms.
 ## Get a Room by name
 
 ```json
-[
-    {
-        "id": integer,
-        "name": "string",
-        "description": "string",
-        "capacity": integer,
-        "withTV": boolean,
-        "withWhiteBoard": boolean
-    }
-]
+{
+    "id": integer,
+    "name": "string",
+    "description": "string",
+    "capacity": integer,
+    "withTV": boolean,
+    "withWhiteBoard": boolean
+}
 ```
 
 This endpoint retrieves a room by name.
@@ -309,7 +299,7 @@ This endpoint retrieves a room by name.
 
 `GET /api/rooms/{room_name}`
 
-### URL Parameters
+### Path Parameters
 
 Parameter | Description
 --------- | ----------
@@ -318,16 +308,14 @@ room_name | the name of a room
 ## Get a Room by id
 
 ```json
-[
-    {
-        "id": integer,
-        "name": "string",
-        "description": "string",
-        "capacity": integer,
-        "withTV": boolean,
-        "withWhiteBoard": boolean
-    }
-]
+{
+    "id": integer,
+    "name": "string",
+    "description": "string",
+    "capacity": integer,
+    "withTV": boolean,
+    "withWhiteBoard": boolean
+}
 ```
 
 This endpoint retrieves a room by id.
@@ -336,7 +324,7 @@ This endpoint retrieves a room by id.
 
 `GET /api/rooms/{id}`
 
-### URL Parameters
+### Path Parameters
 
 Parameter | Description
 --------- | ----------
@@ -388,7 +376,6 @@ We interpret `timeline` as a 30 minutes timeframe which has a specific `start` t
 
 ```json
 [
-  
     {
         "id": integer,
         "start": {
@@ -418,24 +405,21 @@ This endpoint retrieves all timelines.
 ## Get a Timeline by id
 
 ```json
-[
-  
-    {
-        "id": integer,
-        "start": {
-            "hour": integer,
-            "minute": integer,
-            "second": integer,
-            "nano": integer
-        },
-        "finish": {
-            "hour": integer,
-            "minute": integer,
-            "second": integer,
-            "nano": integer
-        }
+{
+    "id": integer,
+    "start": {
+        "hour": integer,
+        "minute": integer,
+        "second": integer,
+        "nano": integer
+    },
+    "finish": {
+        "hour": integer,
+        "minute": integer,
+        "second": integer,
+        "nano": integer
     }
-]
+}
 ```
 
 This endpoint retrieves a timeline by id.
@@ -444,7 +428,7 @@ This endpoint retrieves a timeline by id.
 
 `GET /api/timelines/{id}`
 
-### URL Parameters
+### Path Parameters
 
 Parameter | Description
 --------- | ----------
@@ -562,80 +546,77 @@ This endpoint retrieves all locks.
 ## Get a Lock by id
 
 ```json
-[
-    {
+{
+    "id": integer,
+    "room": {
         "id": integer,
-        "room": {
-            "id": integer,
-            "name": "stiring",
-            "description": "string",
-            "capacity": integer,
-            "withTV": boolean,
-            "withWhiteBoard": boolean
+        "name": "stiring",
+        "description": "string",
+        "capacity": integer,
+        "withTV": boolean,
+        "withWhiteBoard": boolean
+    },
+    "dates": [
+        {
+            "year": integer,
+            "month": integer,
+            "day": integer
         },
-        "dates": [
-            {
-                "year": integer,
-                "month": integer,
-                "day": integer
+        ...
+    ],
+    "timelines": [
+        {
+            "id": integer,
+            "start": {
+                "hour": integer,
+                "minute": integer,
+                "second": integer,
+                "nano": integer
             },
-            ...
-        ],
-        "timelines": [
+            "finish": {
+                "hour": integer,
+                "minute": integer,
+                "second": integer,
+                "nano": integer
+            }
+        },
+        ...
+    ],
+    // depending on the lock type, response will include whether batch or team object or neither
+    "team": {
+        "id": integer,
+        "name": "string",
+        "members": [
             {
                 "id": integer,
-                "start": {
-                    "hour": integer,
-                    "minute": integer,
-                    "second": integer,
-                    "nano": integer
-                },
-                "finish": {
-                    "hour": integer,
-                    "minute": integer,
-                    "second": integer,
-                    "nano": integer
-                }
+                "firstName": "string",
+                "lastName": "string",
+                "role": "string"
             },
             ...
-        ],
-        // depending on the lock type, response will include whether batch or team object or neither
-        "team": {
-            "id": integer,
-            "name": "string",
-            "members": [
-                {
-                    "id": integer,
-                    "firstName": "string",
-                    "lastName": "string",
-                    "role": "string"
-                },
-                ...
-            ]
-        },
-        "batch": {
-            "number": integer,
-            "isGraduated": boolean,
-            "teams": [
-                {
-                    "id": integer,
-                    "name": "string",
-                    "members": [
-                        {
-                            "id": integer,
-                            "firstName": "string",
-                            "lastName": "string",
-                            "role": "string"
-                        },
-                        ...
-                    ]
-                },
-                ...
-            ]
-        }
+        ]
     },
-    ...
-]
+    "batch": {
+        "number": integer,
+        "isGraduated": boolean,
+        "teams": [
+            {
+                "id": integer,
+                "name": "string",
+                "members": [
+                    {
+                        "id": integer,
+                        "firstName": "string",
+                        "lastName": "string",
+                        "role": "string"
+                    },
+                    ...
+                ]
+            },
+            ...
+        ]
+    }
+}
 ```
 
 This endpoint retrieves a lock by id.
@@ -644,7 +625,7 @@ This endpoint retrieves a lock by id.
 
 `GET /api/locks/{id}`
 
-### URL Parameters
+### Path Parameters
 
 Parameter | Description
 --------- | ----------
@@ -697,7 +678,7 @@ This endpoint removes a lock by id.
 
 `DELETE /api/locks/{id}`
 
-### URL Parameters
+### Path Parameters
 
 Parameter | Description
 --------- | ----------
@@ -705,19 +686,459 @@ id | The id of a lock
 
 # Conference
 
+Conference - group of people sit in the room and aim to look serious. We define two types of conferences: `solid` - room is booked with 100% waranty and `iffy` - room is booked without warranty, means another reservator might rebook the room with `solid` conference.
+
 ## Get all Conferences
+
+```json
+[
+    {
+        "id": integer,
+        "type": "srting",
+        "room": {
+            "id": integer,
+            "name": "string",
+            "description": "string",
+            "capacity": integer,
+            "withTV": boolean,
+            "withWhiteBoard": boolean
+        },
+        "reservator": {
+            "id": integer,
+            "firstName": "string",
+            "lastName": "string",
+            "role": "string"
+        },
+        "date": {
+            "year": integer,
+            "month": integer,
+            "day": integer
+        },
+        "timelines": [
+            {
+                "id": integer,
+                "start": {
+                    "hour": integer,
+                    "minute": integer,
+                    "second": integer,
+                    "nano": integer
+                },
+                "finish": {
+                    "hour": integer,
+                    "minute": integer,
+                    "second": integer,
+                    "nano": integer
+                }
+            },
+            ...
+        ],
+        "team": {
+            "id": integer,
+            "name": "string",
+            "members": [
+                {
+                    "id": integer,
+                    "firstName": "string",
+                    "lastName": "string",
+                    "role": "string"
+                },
+                ...
+            ]
+        }
+    },
+    ...
+]
+```
+
+This endpoint retrieves all conferences.
+
+### HTTP Request
+
+`GET /api/conferences`
 
 ## Get a Conference by id
 
+```json
+{
+    "id": integer,
+    "type": "srting",
+    "room": {
+        "id": integer,
+        "name": "string",
+        "description": "string",
+        "capacity": integer,
+        "withTV": boolean,
+        "withWhiteBoard": boolean
+    },
+    "reservator": {
+        "id": integer,
+        "firstName": "string",
+        "lastName": "string",
+        "role": "string"
+    },
+    "date": {
+        "year": integer,
+        "month": integer,
+        "day": integer
+    },
+    "timelines": [
+        {
+            "id": integer,
+            "start": {
+                "hour": integer,
+                "minute": integer,
+                "second": integer,
+                "nano": integer
+            },
+            "finish": {
+                "hour": integer,
+                "minute": integer,
+                "second": integer,
+                "nano": integer
+            }
+        },
+        ...
+    ],
+    "team": {
+        "id": integer,
+        "name": "string",
+        "members": [
+            {
+                "id": integer,
+                "firstName": "string",
+                "lastName": "string",
+                "role": "string"
+            },
+            ...
+        ]
+    }
+}
+```
+
+This endpoint retrieves a conference by id.
+
+### HTTP Request
+
+`GET /api/conferences/{id}`
+
+### Path Parameters
+
+Parameter | Description
+--------- | ----------
+id | the id of a conference
+
 ## Get Conferences by room
+
+```json
+[
+    {
+        "id": integer,
+        "type": "srting",
+        "room": {
+            "id": integer,
+            "name": "string",
+            "description": "string",
+            "capacity": integer,
+            "withTV": boolean,
+            "withWhiteBoard": boolean
+        },
+        "reservator": {
+            "id": integer,
+            "firstName": "string",
+            "lastName": "string",
+            "role": "string"
+        },
+        "date": {
+            "year": integer,
+            "month": integer,
+            "day": integer
+        },
+        "timelines": [
+            {
+                "id": integer,
+                "start": {
+                    "hour": integer,
+                    "minute": integer,
+                    "second": integer,
+                    "nano": integer
+                },
+                "finish": {
+                    "hour": integer,
+                    "minute": integer,
+                    "second": integer,
+                    "nano": integer
+                }
+            },
+            ...
+        ],
+        "team": {
+            "id": integer,
+            "name": "string",
+            "members": [
+                {
+                    "id": integer,
+                    "firstName": "string",
+                    "lastName": "string",
+                    "role": "string"
+                },
+                ...
+            ]
+        }
+    },
+    ...
+]
+```
+
+This endpoint retrieves conferences only for a specific room.
+
+### HTTP Request
+
+`GET /api/conferences/room`
+
+### Query Parameters
+
+Parameter | Demand | Description
+--------- | -----------  | -----------
+room-name | required | name of a room
 
 ## Get Conferences by cluster
 
+
+```json
+[
+    {
+        "id": integer,
+        "type": "srting",
+        "room": {
+            "id": integer,
+            "name": "string",
+            "description": "string",
+            "capacity": integer,
+            "withTV": boolean,
+            "withWhiteBoard": boolean
+        },
+        "reservator": {
+            "id": integer,
+            "firstName": "string",
+            "lastName": "string",
+            "role": "string"
+        },
+        "date": {
+            "year": integer,
+            "month": integer,
+            "day": integer
+        },
+        "timelines": [
+            {
+                "id": integer,
+                "start": {
+                    "hour": integer,
+                    "minute": integer,
+                    "second": integer,
+                    "nano": integer
+                },
+                "finish": {
+                    "hour": integer,
+                    "minute": integer,
+                    "second": integer,
+                    "nano": integer
+                }
+            },
+            ...
+        ],
+        "team": {
+            "id": integer,
+            "name": "string",
+            "members": [
+                {
+                    "id": integer,
+                    "firstName": "string",
+                    "lastName": "string",
+                    "role": "string"
+                },
+                ...
+            ]
+        }
+    },
+    ...
+]
+```
+
+This endpoint retrieves conferences only for a specific [cluster](#cluster).
+
+### HTTP Request
+
+`GET /api/conferences/cluster`
+
+### Query Parameters
+
+Parameter | Demand | Description
+--------- | -----------  | -----------
+cluster-name | required | name of a cluster
+
 ## Get my Conferences
+
+```json
+[
+    {
+        "id": integer,
+        "type": "srting",
+        "room": {
+            "id": integer,
+            "name": "string",
+            "description": "string",
+            "capacity": integer,
+            "withTV": boolean,
+            "withWhiteBoard": boolean
+        },
+        "reservator": {
+            "id": integer,
+            "firstName": "string",
+            "lastName": "string",
+            "role": "string"
+        },
+        "date": {
+            "year": integer,
+            "month": integer,
+            "day": integer
+        },
+        "timelines": [
+            {
+                "id": integer,
+                "start": {
+                    "hour": integer,
+                    "minute": integer,
+                    "second": integer,
+                    "nano": integer
+                },
+                "finish": {
+                    "hour": integer,
+                    "minute": integer,
+                    "second": integer,
+                    "nano": integer
+                }
+            },
+            ...
+        ],
+        "team": {
+            "id": integer,
+            "name": "string",
+            "members": [
+                {
+                    "id": integer,
+                    "firstName": "string",
+                    "lastName": "string",
+                    "role": "string"
+                },
+                ...
+            ]
+        }
+    },
+    ...
+]
+```
+
+This endpoint retrieves your conferences.
+
+### HTTP Request
+
+`GET /api/conferences/my`
 
 ## Book a Conference
 
-## Cancel a Conference
+```json
+{
+    "id": integer,
+    "type": "srting",
+    "room": {
+        "id": integer,
+        "name": "string",
+        "description": "string",
+        "capacity": integer,
+        "withTV": boolean,
+        "withWhiteBoard": boolean
+    },
+    "reservator": {
+        "id": integer,
+        "firstName": "string",
+        "lastName": "string",
+        "role": "string"
+    },
+    "date": {
+        "year": integer,
+        "month": integer,
+        "day": integer
+    },
+    "timelines": [
+        {
+            "id": integer,
+            "start": {
+                "hour": integer,
+                "minute": integer,
+                "second": integer,
+                "nano": integer
+            },
+            "finish": {
+                "hour": integer,
+                "minute": integer,
+                "second": integer,
+                "nano": integer
+            }
+        },
+        ...
+    ],
+    "team": {
+        "id": integer,
+        "name": "string",
+        "members": [
+            {
+                "id": integer,
+                "firstName": "string",
+                "lastName": "string",
+                "role": "string"
+            },
+            ...
+        ]
+    }
+}
+```
+
+This endpoint creates new conference.
+
+### HTTP Request
+
+`POST /api/conferences/conference`
+
+### Query Parameters
+
+Parameter | Demand  |Description
+--------- | -----------  | -----------
+conference-type | required | type of a conference [`solid`, `iffy`]
+room-id | required | id of a room which will be booked for a conference
+year | required | conference year (four digit number, ex. `2020`)
+month | required | conference month [`1`-`12`]
+day | required | conference day [`1`-`31`]
+timeline-id | required | use timeline id to specify [timeline](#timeline) for a conference
+notify-team | required | [true, false] Do you want send out emails to your teamembers with a new conference notification?
+
+<aside class="notice">
+You might want to book a room for a more then a 30 minutes (one timeline), in that case include all timeline ids in you request
+<code>/api/locks/lock?...timeline-id=8&timeline-id=9...</code>
+</aside>
+
+## Cancel a Conference by id
+
+This endpoint removes a conference by id.
+
+### HTTP Request
+
+`DELETE /api/conferences/{id}`
+
+### Path Parameters
+
+Parameter | Description
+--------- | ----------
+id | the id of a conference
 
 # Batch
 
