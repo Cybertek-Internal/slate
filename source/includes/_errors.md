@@ -10,7 +10,7 @@ The bookit api uses the following error codes:
 Error Code | Name | Meaning
 ---------- | ------- | ------
 400 | Bad Request | your request is invalid.
-401 | Unauthorized | your API key is wrong.
+401 | Unauthorized | your authorization token is wrong.
 403 | Forbidden | the resource requested is hidden for you.
 404 | Not Found | the specified resource could not be found.
 409 | Conflict | indicates that the request could not be processed because of conflict in the current state of the resource.
