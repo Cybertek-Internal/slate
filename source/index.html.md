@@ -2,7 +2,6 @@
 title: bookit api reference
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
   - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
 
 includes:
@@ -221,13 +220,13 @@ This endpoint retrieves a campus by name.
 
 ### HTTP Request
 
-`GET /api/clusters/{cluster_name}`
+`GET /api/clusters/{cluster-name}`
 
 ### Path Parameters
 
 Parameter | Description
 --------- | ----------
-cluster_name | the name of a cluster
+cluster-name | the name of a cluster
 
 ## Get your Cluster
 
@@ -297,13 +296,13 @@ This endpoint retrieves a room by name.
 
 ### HTTP Request
 
-`GET /api/rooms/{room_name}`
+`GET /api/rooms/{room-name}`
 
 ### Path Parameters
 
 Parameter | Description
 --------- | ----------
-room_name | the name of a room
+room-name | the name of a room
 
 ## Get a Room by id
 
@@ -370,7 +369,7 @@ You might want to look up a rooms availability for a more then a 30 minutes (one
 
 # Timeline
 
-We interpret `timeline` as a 30 minutes timeframe which has a specific `start` time and `finish` times. Imagine, you want to book a room from 2:30pm to 3:30pm, you will have to block two timelines (2:30pm - 3:00pm and 3:00pm - 3:30pm) within room availability schedule.
+We interpret `timeline` as a 30 minutes timeframe which has a specific `start` and `finish` times. Imagine, you want to book a room from 2:30pm to 3:30pm, you will have to block two timelines (2:30pm - 3:00pm and 3:00pm - 3:30pm) within room availability schedule.
 
 ## Get all Timelines
 
@@ -453,7 +452,7 @@ This endpoint retrieves your timeline counts.
 
 # Lock
 
-Do you find any connection between [room](#rooms) and `lock`? You got it! Nobody can get into a locked room. We use `locks` for an exactly same purpose, suppose, an access to the room have to be limited to a certain batch or team at specific date and time, we can lock the room and share a key whether with a team or batch. Even hide the key, so nobody can book a room!
+Do you find any connection between [room](#rooms) and `lock`? You got it! Nobody can get into a locked room. We use `locks` for an exactly same purpose, suppose, an access to the room have to be limited to a certain batch or team at specific date and time, we can lock the room and share the key whether with a specific team or entire batch. Even possible to hide the key, so nobody can book a room!
 
 
 ## Get all Locks
@@ -634,7 +633,6 @@ id | the id of a lock
 
 ## Add a Lock
 
-
 ```json
 there is no key to unlock #{lock-id}. {room-name} is secured
 ```
@@ -651,7 +649,7 @@ Parameter | Demand | Description
 --------- | -----------  | -----------
 room-name | required | name of a room which you plan to lock
 timeline-id | required | id of a timeline when room won't be accessible
-every | required | most of the time you will generate repetative lock. Let's say, you want room to be locked every Tuesday, so set `every` to `tuesday.` [`day`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`, `sunday`]
+every | required | most of the time you will generate repetative lock. Let's say, you want room to be locked every Tuesday, so set `every` to `tuesday`, another possible values: [`day`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`, `sunday`]
 end-year | required | end year of a repetative lock. Works together with `every`, repetative locks will be generated until date set via `end-year`, `end-month`, `end-day`
 end-month | required | end month of a repetative lock.
 end-day | required | end day of a repetative lock.
@@ -1144,61 +1142,590 @@ id | the id of a conference
 
 ## Get all Batches
 
+```json
+[
+    {
+        "number": integer,
+        "isGraduated": boolean,
+        "teams": [
+            {
+                "id": integer,
+                "name": "string",
+                "members": [
+                    {
+                        "id": integer,
+                        "firstName": "string",
+                        "lastName": "string",
+                        "role": "string"
+                    },
+                    ...
+                ]
+            },
+            ...
+        ]
+    },
+    ...
+]
+```
+
+This endpoint retrieves all batches.
+
+### HTTP Request
+
+`GET /api/batches`
+
 ## Get a Batch by number
+
+```json
+{
+    "number": integer,
+    "isGraduated": boolean,
+    "teams": [
+        {
+            "id": integer,
+            "name": "string",
+            "members": [
+                {
+                    "id": integer,
+                    "firstName": "string",
+                    "lastName": "string",
+                    "role": "string"
+                },
+                ...
+            ]
+        },
+        ...
+    ]
+}
+```
+
+This endpoint retrieves a batch by batch number.
+
+### HTTP Request
+
+`GET /api/batches/{batch-number}`
+
+### Path Parameters
+
+Parameter | Description
+--------- | ----------
+batch-number | number of the batch
 
 ## Get my Batch
 
+```json
+{
+    "number": integer,
+    "isGraduated": boolean,
+    "teams": [
+        {
+            "id": integer,
+            "name": "string",
+            "members": [
+                {
+                    "id": integer,
+                    "firstName": "string",
+                    "lastName": "string",
+                    "role": "string"
+                },
+                ...
+            ]
+        },
+        ...
+    ]
+}
+```
+
+This endpoint retrieves your batch.
+
+### HTTP Request
+
+`GET /api/batches/my`
+
 ## Add a Batch
 
+```json
+batch {batch-number} has been successfully added to the database
+```
+
+This endpoint creates brand new batch.
+
+### HTTP Request
+
+`POST /api/batches/batch`
+
+### Query Parameters
+
+Parameter | Demand | Description
+--------- | -------- | ----------
+batch-number | required | number of a new batch
+
 ## Gratuate a Batch
+
+Mark whole batch as graduated. Note, student after graduation is entirely new person with different set of abbilities. For instance, VA student is able to book a room on the [dark side](#cluster) after graduation only.
+
+```json
+batch {batch-number} has been successfully graduated
+```
+
+### HTTP Request
+
+`PUT /api/batches/{batch-number}/graduate`
+
+### Path Parameters
+
+Parameter | Demand | Description
+--------- | -------- | ----------
+batch-number | required | number of a new batch
 
 # Team
 
 ## Get all Teams
 
+```json
+[
+    {
+        "id": integer,
+        "name": "string",
+        "members": [
+            {
+                "id": integer,
+                "firstName": "string",
+                "lastName": "string",
+                "role": "string"
+            },
+            ...
+        ]
+    },
+    ...
+]
+```
+
+This endpoint retrieves all teams.
+
+### HTTP Request
+
+`GET /api/teams`
+
 ## Get a Team by id
+
+```json
+{
+    "id": integer,
+    "name": "string",
+    "members": [
+        {
+            "id": integer,
+            "firstName": "string",
+            "lastName": "string",
+            "role": "string"
+        },
+        ...
+    ]
+}
+```
+
+This endpoint retrieves a team by id.
+
+### HTTP Request
+
+`GET /api/teams/{id}`
 
 ## Get my Team
 
+```json
+{
+    "id": integer,
+    "name": "string",
+    "members": [
+        {
+            "id": integer,
+            "firstName": "string",
+            "lastName": "string",
+            "role": "string"
+        },
+        ...
+    ]
+}
+```
+
+This endpoint retrieves your team.
+
+### HTTP Request
+
+`GET /api/teams/my`
+
 ## Add a Team
+
+```json
+team {team-name} has been added to the batch {batch-number}
+```
+
+This endpoint creates new team.
+
+### HTTP Request
+
+`POST /api/teams/team`
+
+### Query Parameters
+
+Parameter | Demand | Description
+--------- | -------- | ----------
+campus-location | required | name of the campus which team will be added to
+batch-number | required | number of the batch which team will be added to
+team-name | required | name of the team, should be uniq per campus
 
 # User
 
 ## Get all Users
 
+```json
+[
+    {
+        "id": integer,
+        "firstName": "string",
+        "lastName": "string",
+        "role": "string"
+    },
+    ...
+]
+```
+
+This endpoint retrieves all users.
+
+### HTTP Request
+
+`GET /api/users`
+
 ## Get a User by id
 
+```json
+{
+    "id": integer,
+    "firstName": "string",
+    "lastName": "string",
+    "role": "string"
+}
+```
+
+This endpoint retrieves a user by id.
+
+### HTTP Request
+
+`GET /api/users/{id}`
+
+### Path Parameters
+
+Parameter | Demand | Description
+--------- | -------- | ----------
+id | required | id of the user
+
 ## Get Me
+
+```json
+{
+    "id": integer,
+    "firstName": "string",
+    "lastName": "string",
+    "role": "string"
+}
+```
+
+This endpoint retrieves you.
+
+### HTTP Request
+
+`GET /api/users/me`
 
 # Student
 
+Most probably you. We group students into two categories, the one who is permitted to book the room and the one who is not, which are `student-team-leader` and `student-team-member` respectfully.
+
 ## Get all Students
+
+```json
+[
+    {
+        "id": integer,
+        "firstName": "string",
+        "lastName": "string",
+        "role": "string"
+    },
+    ...
+]
+```
+
+This endpoint retrieves all students.
+
+### HTTP Request
+
+`GET /api/students`
 
 ## Get a Student by id
 
+```json
+{
+    "id": integer,
+    "firstName": "string",
+    "lastName": "string",
+    "role": "string"
+}
+```
+
+This endpoint retrieves a student by id.
+
+### HTTP Request
+
+`GET /api/students/{id}`
+
+### Path Parameters
+
+Parameter | Demand | Description
+--------- | -------- | ----------
+id | required | id of the student
+
 ## Get Me
+
+```json
+{
+    "id": integer,
+    "firstName": "string",
+    "lastName": "string",
+    "role": "string"
+}
+```
+
+This endpoint retrieves you (if you're student).
+
+### HTTP Request
+
+`GET /api/students/me`
 
 ## Add a Student
 
+```json
+user {student-id} has been added to the database
+```
+
+This endpoint creates new student.
+
+### HTTP Request
+
+`POST /api/students/student`
+
+### Query Parameters
+
+Parameter | Demand | Description
+--------- | -------- | ----------
+first-name | required | first name of the student
+last-name | required | last name of the student
+email | required | email of the student, will be used for an [authentication](#authentication)
+password | required | password of the account, will be used for an [authentication](#authentication)
+role | required | role of the student, [[`student-team-leader`, `student-team-member`]](#student)
+campus-location | required | name of the campus which student will be added to
+batch-number | required | number of the batch which student will be added to
+team-name | required | name of the team which student will be added to
+
 ## Update a Student
 
+```json
+user {student-id} has been updated
+```
+
+This endpoint updates a student.
+
+### HTTP Request
+
+`PUT /api/students/{id}`
+
+### Path Parameters
+
+Parameter | Demand | Description
+--------- | -------- | ----------
+id | required | id of the student
+
+### Query Parameters
+
+Parameter | Demand | Description
+--------- | -------- | ----------
+first-name | optional | first name of the student
+last-name | required | last name of the student
+email | required | email of the student, will be used for an [authentication](#authentication)
+password | required | password of the account, will be used for an [authentication](#authentication)
+role | required | role of the student, [[`student-team-leader`, `student-team-member`]](#student)
+
 ## Exclude a Student
+
+```json
+user {student-id} has been deleted
+```
+
+This endpoint removes a student.
+
+### HTTP Request
+
+`DELETE /api/students/{id}`
+
+### Path Parameters
+
+Parameter | Demand | Description
+--------- | -------- | ----------
+id | required | id of the student
 
 # Teacher
 
 ## Get all Teachers
 
+```json
+[
+    {
+        "id": integer,
+        "firstName": "string",
+        "lastName": "string",
+        "role": "string"
+    },
+    ...
+]
+```
+
+This endpoint retrieves all teachers.
+
+### HTTP Request
+
+`GET /api/teachers`
+
 ## Get a Teacher by id
+
+```json
+{
+    "id": integer,
+    "firstName": "string",
+    "lastName": "string",
+    "role": "string"
+}
+```
+
+This endpoint retrieves a teacher by id.
+
+### HTTP Request
+
+`GET /api/teachers/{id}`
+
+### Path Parameters
+
+Parameter | Demand | Description
+--------- | -------- | ----------
+id | required | id of the teacher
 
 ## Get Me
 
+```json
+{
+    "id": integer,
+    "firstName": "string",
+    "lastName": "string",
+    "role": "string"
+}
+```
+
+This endpoint retrieves you (if you're teacher). 
+
+### HTTP Request
+
+`GET /api/teachers/me`
+
 ## Add a Teacher
+
+```json
+user {teacher-id} has been added to the database
+```
+
+This endpoint creates new teacher.
+
+### HTTP Request
+
+`POST /api/teachers/teacher`
+
+### Query Parameters
+
+Parameter | Demand | Description
+--------- | -------- | ----------
+first-name | required | first name of the teacher
+last-name | required | last name of the teacher
+email | required | email of the teacher, will be used for an [authentication](#authentication)
+password | required | password of the account, will be used for an [authentication](#authentication)
+campus-location | required | name of the campus which teacher will be added to
 
 ## Update a Teacher
 
+```json
+user {teacher-id} has been updated
+```
+
+This endpoint updates a teacher.
+
+### HTTP Request
+
+`PUT /api/teachers/{id}`
+
+### Path Parameters
+
+Parameter | Demand | Description
+--------- | -------- | ----------
+id | required | id of the teacher
+
+### Query Parameters
+
+Parameter | Demand | Description
+--------- | -------- | ----------
+first-name | optional | first name of the teacher
+last-name | required | last name of the teacher
+email | required | email of the teacher, will be used for an [authentication](#authentication)
+password | required | password of the account, will be for an [authentication](#authentication)
+campus-location | required | name of the campus which teacher belongs to
+
+
 # Schedule Preferences
 
+There are a set of defined rules to regulate a room reservation process. Schedule preferences is a part of regulatory configuration which contains a list of dates and timelines when room reservation is allowed.
 ## Get a Schedule Preferences
+
+```json
+{
+    "dates": [
+        {
+            "year": integer,
+            "month": integer,
+            "day": integer
+        },
+       ...
+    ],
+    "timelines": [
+        {
+            "id": integer,
+            "start": {
+                "hour": integer,
+                "minute": integer,
+                "second": integer,
+                "nano": integer
+            },
+            "finish": {
+                "hour": integer,
+                "minute": integer,
+                "second": integer,
+                "nano": integer
+            }
+        },
+       ...
+    ]
+}
+```
+
+This endpoint retrieves a schedule preferences.
+
+### HTTP Request
+
+`GET /api/schedule/preferences`
 
 
 

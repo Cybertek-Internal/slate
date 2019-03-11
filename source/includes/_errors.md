@@ -1,22 +1,19 @@
 # Errors
 
 <aside class="notice">
-This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
+We tried to design the system as intuitive as possible and hope that every single interaction will go easy and smooth, but in case something went wrong, you'll have to deal with errors.
 </aside>
 
-The Kittn API uses the following error codes:
+The bookit api uses the following error codes:
 
 
-Error Code | Meaning
----------- | -------
-400 | Bad Request -- Your request is invalid.
-401 | Unauthorized -- Your API key is wrong.
-403 | Forbidden -- The kitten requested is hidden for administrators only.
-404 | Not Found -- The specified kitten could not be found.
-405 | Method Not Allowed -- You tried to access a kitten with an invalid method.
-406 | Not Acceptable -- You requested a format that isn't json.
-410 | Gone -- The kitten requested has been removed from our servers.
-418 | I'm a teapot.
-429 | Too Many Requests -- You're requesting too many kittens! Slow down!
-500 | Internal Server Error -- We had a problem with our server. Try again later.
-503 | Service Unavailable -- We're temporarily offline for maintenance. Please try again later.
+Error Code | Name | Meaning
+---------- | ------- | ------
+400 | Bad Request | your request is invalid.
+401 | Unauthorized | your API key is wrong.
+403 | Forbidden | the resource requested is hidden for you.
+404 | Not Found | the specified resource could not be found.
+409 | Conflict | indicates that the request could not be processed because of conflict in the current state of the resource.
+422 | Unprocessable Entity | your request structure is right, but something wrong with info you're passing to the service.
+429 | Too Many Requests | you're requesting too many resources, slow down.
+500 | Internal Server Error | we had a problem with our server, try again later.
